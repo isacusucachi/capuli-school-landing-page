@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/sections/Hero.astro";
+import FAQ from "../components/sections/FAQ.astro";
+import Features from "../components/sections/Features.astro";
+import CTA from "../components/sections/CTA.astro";
+import Services from "../components/sections/Services.astro";
+import About from "../components/sections/About.astro";
+import Teachers from "../components/sections/Teachers.astro";
+import Contact from "../components/sections/Contact.astro";
+---
+
+<Layout title="Aprende español y quechua con Capulí School">
+  <main class="flex flex-col overflow-hidden">
+    <Hero className="py-10 md:py-16" />
+    <About className="pt-10 md:pt-16" />
+    <Services className="pt-10 md:pt-16" />
+    <Teachers className="py-10 md:py-16" />
+    <Features className="py-10 md:py-16" />
+    <Contact className="pt-10 md:pt-16" />
+    <FAQ className="py-10 md:py-16" />
+    <CTA className="py-10 md:py-16" />
+  </main>
+</Layout>

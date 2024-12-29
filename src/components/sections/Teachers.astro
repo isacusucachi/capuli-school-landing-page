@@ -1,0 +1,65 @@
+---
+import { Image, Picture } from "astro:assets";
+import Paragraph from "../shared/Paragraph.astro";
+import Container from "../shared/Container.astro";
+import Title from "../shared/Title.astro";
+import { teachers } from "../../utils/data.ts";
+
+type TeachersProps = {
+  img: ImageMetadata;
+  alt: string;
+  name: string;
+  title: string;
+};
+
+export interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
+---
+
+<section id="equipo" class=`flex flex-col bg-primary ${className}`>
+  <Container className="space-y-10 md:spacece-y-12">
+    <div class="text-center max-w-3xl mx-auto">
+      <Title className="text-white">NUESTRO EQUIPO</Title>
+    </div>
+    <div class="text-center max-w-4xl mx-auto">
+      <Paragraph className="mt-8 font-medium text:lg md:text-2xl text-white "
+        >Nuestros profesores son de la zona, hablantes nativos, expertos en la
+        enseñanza del español y quechua, además de ser conocedores de la cultura
+        andina.</Paragraph
+      >
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-10 mx-auto mt-12">
+      {
+        teachers.map((teacher: TeachersProps) => {
+          return (
+            <div class="group">
+              <div class="w-full aspect-square">
+                <Picture
+                  src={teacher.img}
+                  alt={teacher.alt}
+                  sizes="(max-width: 800px) 100vw, 400px"
+                  width={400}
+                  height={400}
+                  class="w-full rounded-md transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"
+                  loading={"lazy"}
+                />
+              </div>
+
+              <div class="mt-4 text-center">
+                <h2 class="font-medium text-lg md:text-2xl text-white">
+                  {teacher.name}
+                </h2>
+                <h3 class="text-pretty text-base font-medium text-white">
+                  {teacher.title}
+                </h3>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,74 @@
+---
+import { Image } from "astro:assets";
+import Paragraph from "../shared/Paragraph.astro";
+import Title from "../shared/Title.astro";
+import { services } from "../../utils/data.ts";
+
+type ServicesProps = {
+  title: string;
+  description: string;
+  levels: string[];
+  img: ImageMetadata;
+};
+
+export interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
+
+// Define SVG marker to be used in the component
+const ListItemMarker: string = `<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mt-0.5 h-6 w-6 text-primary flex-none"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>`;
+---
+
+<section id="servicios" class=`flex flex-col ${className}`>
+  <div class="text-center max-w-3xl mx-auto space-y-4">
+    <Title className="dark:text-primary">NUESTROS SERVICIOS</Title>
+  </div>
+  {
+    services.map((service: ServicesProps, index: number) => {
+      const oddIndex = index % 2 === 0;
+      const flexRow = oddIndex ? "midmd:flex-row" : "midmd:flex-row-reverse";
+      const bgColor = "bg-transparent";
+
+      return (
+        <div class={`w-100 py-10 md:py-16 ${bgColor}`}>
+          <div
+            class={`flex flex-col gap-10 lg:gap-12 ${flexRow} mx-auto max-w-7xl w-full`}
+          >
+            <div class="max-w-md mx-auto w-11/12 flex-1 flex midmd:w-7/12 lg:w-1/2 flex-col space-y-6">
+              <h2 class="text-heading-1 font-serif text-xl sm:text-2xl md:text-3xl uppercase font-bold text-primary dark:text-white">
+                {service.title}
+              </h2>
+              <Paragraph className="font-medium text-lg md:text-2xl">
+                {service.description}
+              </Paragraph>
+              <ul class="space-y-2 sm:space-y-4">
+                {service.levels.map((item) => (
+                  <li class="flex space-x-3">
+                    <Fragment set:html={ListItemMarker} />
+                    <span class="text-pretty text-base font-medium text-neutral-600 dark:text-neutral-400">
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div class="max-w-md mx-auto midmd:max-w-none lg:mx-0 lg:pr-10 xl:pr-2 flex-1 flex w-11/12 midmd:w-5/12 lg:w-1/2 midmd:h-auto">
+              <div class="w-full h-full relative">
+                <Image
+                  src={service.img}
+                  alt="banner image"
+                  width="1920"
+                  height="1080"
+                  class="w-auto left-1/2 -translate-x-1/2 absolute bottom-0 max-h-full rounded-3xl object-cover"
+                  loading={"lazy"}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    })
+  }
+</section>

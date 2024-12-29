@@ -1,0 +1,117 @@
+---
+import { Image } from "astro:assets";
+import Container from "../shared/Container.astro";
+import Paragraph from "../shared/Paragraph.astro";
+import Title from "../shared/Title.astro";
+
+import myImage from "../../assets/images/dev-with-c-1.webp";
+import GradiantText from "../shared/GradiantText.astro";
+
+type FeatureProps = {
+  title: string;
+  description: string;
+};
+const features = [
+  {
+    title: "Diversidad Cultural",
+    description:
+      "Promoción del aprendizaje de idiomas como herramienta para comprender y valorar las culturas latinoamericanas.",
+  },
+  {
+    title: "Respeto",
+    description: "Fomentar el respeto hacia las tradiciones y lenguas nativas.",
+  },
+  {
+    title: "Inclusión",
+    description:
+      "Acceso igualitario para aprender español y quechua sin barreras culturales.",
+  },
+  {
+    title: "Compromiso",
+    description:
+      "Con el aprendizaje de calidad y la difusión de la cultura andina.",
+  },
+  {
+    title: "Excelencia Académica",
+    description: "Enseñanza de idiomas con un alto estándar de calidad.",
+  },
+  {
+    title: "Autenticidad",
+    description:
+      "Ofrecer conocimientos basados en experiencias reales de hablantes nativos.",
+  },
+  {
+    title: "Innovación",
+    description: "Métodos modernos de enseñanza para idiomas tradicionales.",
+  },
+  {
+    title: "Accesibilidad",
+    description:
+      "Educación virtual para llegar a estudiantes de cualquier parte del mundo.",
+  },
+  {
+    title: "Responsabilidad Social",
+    description:
+      "Preservación y promoción del idioma quechua como legado cultural.",
+  },
+  {
+    title: "Colaboración",
+    description:
+      "Trabajo en equipo entre profesores y estudiantes para alcanzar metas educativas.",
+  },
+  {
+    title: "Pasión",
+    description: "Transmitir amor y respeto por las lenguas y culturas",
+  },
+  {
+    title: "Sostenibilidad",
+    description:
+      "Promoción de prácticas responsables en la educación y uso de recursos digitales.",
+  },
+  {
+    title: "Empatía",
+    description:
+      "Comprender las necesidades de los estudiantes en su proceso de aprendizaje.",
+  },
+  {
+    title: "Identidad",
+    description:
+      "Reafirmar el valor de las lenguas como parte de la identidad cultural.",
+  },
+  {
+    title: "Confianza",
+    description: "Construir relaciones sólidas entre estudiantes y profesores.",
+  },
+];
+
+export interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
+---
+
+<section id="features" class=`${className}`>
+  <Container className="">
+    <div class="text-center max-w-3xl mx-auto">
+      <Title> Los Valores que Nos Inspiran </Title>
+    </div>
+    <div class="flex flex-row flex-wrap mt-8">
+      <!-- <div class="flex flex-col lg:gap-10 lg:gap-12 midmd:flex-row mt-8"> -->
+      <!-- <div class="flex  lg:w-1/2 flex-row"> -->
+      {
+        features.map((feature: FeatureProps) => {
+          return (
+            <div class="flex items-center text-heading-3 font-medium basis-full md:basis-1/2 lg:basis-1/3">
+              <span class="font-bold rounded-full w-8 h-8 mr-3 text-primary inline-flex justify-center items-center">
+                &checkmark;
+              </span>
+              {feature.title}
+            </div>
+          );
+        })
+      }
+      <!-- </div> -->
+    </div>
+  </Container>
+</section>
